@@ -1,5 +1,6 @@
 # workhive
 [API -> DB -> Cafe Post] Auto publishing system
+[DB -> 
 
 ## 1. API & Crawling
 - Get data from website (by scheduler)
@@ -17,4 +18,7 @@ Naver Cafe - selenium
 auto publishing 
 
 ## 4. Analyzing
-use py for ai
+use py for ai (scikit learn, xgboost - TBD)
+
+## 5. Visualizing
+use Recharts/Chart.js/Plotly or D3.js (TBD)
