@@ -1,6 +1,7 @@
 # workhive
-[API -> DB -> Cafe Post] Auto publishing system
-[DB -> 
+[API -> DB -> Cafe Post] Auto publishing system.
+
+[DB -> AI -> Visualizing] for winning at future bidding notices.
 
 ## 1. API & Crawling
 - Get data from website (by scheduler)
