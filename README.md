@@ -16,3 +16,5 @@ table
 Naver Cafe - selenium
 auto publishing 
 
+## 4. Analyzing
+use py for ai
