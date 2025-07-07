@@ -1,0 +1,33 @@
+server:
+  port: 8888
+  servlet:
+    context-path: /
+    session:
+      tracking-modes: cookie
+
+spring:
+#  data:
+#    redis:
+#      host: 192.168.0.112
+#      port: 6379
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/work_hive
+    username: postgres
+    password: 2222
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  security:
+    user:
+      name: admin
+      password: admin
+logging:
+  level:
+    "[org.hibernate.SQL]": OFF
+    "[org.hibernate.type.descriptor.sql.BasicBinder]": OFF
+

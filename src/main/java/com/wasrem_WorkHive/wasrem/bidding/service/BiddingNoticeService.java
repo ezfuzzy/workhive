@@ -1,4 +1,4 @@
 package com.wasrem_WorkHive.wasrem.bidding.service;
 
-public class BiddingNoticeService {
+public interface BiddingNoticeService {
 }

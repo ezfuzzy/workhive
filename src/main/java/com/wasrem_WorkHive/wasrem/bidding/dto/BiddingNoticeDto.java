@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,7 +16,7 @@ public class BiddingNoticeDto {
     private Long id;
 
     private String bidNtceNm;           //      공고명
-    private String ntceInsttNm;         //      공고번호
+    private String ntceInsttNm;         //      공고기관명
 
     private String rgstTyNm;            //      발주처
     private String cntrctCnclsMthdNm;   //      계약방법
@@ -33,6 +34,15 @@ public class BiddingNoticeDto {
     private String sucsfbidLwltRate;    //      낙찰하한율
     private String bidNtceDtlUrl;       //      나라장터 상세보기 사이트 링크
 
-    private String ntceSpecDocUrl;      //      첨부파일 링크 1 ~ 10
-    private String ntceSpecFileNm;      //      첨부파일 이름 1 ~ 10
+    // 첨부파일 목록 (최대 10개, 일부만 존재할 수 있음)
+    private List<AttachmentDto> attachments;
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class AttachmentDto {
+        private String ntceSpecFileNm;
+        private String ntceSpecDocUrl;
+    }
 }
