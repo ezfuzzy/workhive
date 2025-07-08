@@ -1,10 +1,12 @@
 package com.wasrem_WorkHive.wasrem.bidding.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,37 +17,58 @@ public class BiddingNotice {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; //                Int     [pk, increment]
 
-    private String bidNtceNm;
-    private String bidNtceNo;
+    private String bidNtceNo;   // 입찰공고번호
+    private String bidNtceOrd;  // 입찰공고차수
+    private String bidNtceNm;   // 입찰공고명
+    private String ntceKindNm;  // 공고종류명
+    private String rgstTyNm;    // 등록유형명
 
-    private String ntceInsttNm;
-    private String rgstTyNm;
-    private String cntrctCnclsMthdNm;
-    private String pubPrcrmntClsfcNm;
-    private String ntceInsttOfclNm;
-    private String ntceInsttOfclTelNo;
-    private String prtcptPsblRgnNm;
-    private LocalDateTime bidNtceDt;
-    private LocalDateTime bidBeginDt;
-    private LocalDateTime bidClseDt;
-    private String opengDt;
-    private Long asignBdgtAmt;
-    private Long presmptPrce;
-    private String sucsfbidLwltRate;
-    private String bidNtceDtlUrl;
+    private Boolean reNtceYn;   // 재공고 여부
+    private Boolean intrbidYn;  // 국제입찰 여부
 
-    @ElementCollection(fetch = FetchType.LAZY)
-    @CollectionTable(name = "bidding_notice_attachments", joinColumns = @JoinColumn(name = "notice_id"))
-    private List<Attachment> attachments;
+    private String bidMethdNm;         // 입찰방식명
+    private String cntrctCnclsMthdNm;  // 계약체결방법명
+    private String refNo;              // 참조번호
+    private String untyNtceNo;         // 통합공고번호
 
-    @Embeddable
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class Attachment {
-        private String ntceSpecFileNm;
-        private String ntceSpecDocUrl;
-    }
+    private String indstrytyCd;        //  업종 코드
+    private String indstrytyNm;        // 업종명
+    private String prtcptLmtRgnCd;     // 참가 가능 지역 코드
+    private String prtcptPsblRgnNm;    // 참가 가능 지역명
+
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+
+    @OneToOne(mappedBy = "biddingNotice", fetch = FetchType.LAZY)
+    private BiddingAgencyInfo agencyInfo;
+
+    @OneToOne(mappedBy = "biddingNotice", fetch = FetchType.LAZY)
+    private BiddingApplicationCondition applicationCondition;
+
+    @OneToOne(mappedBy = "biddingNotice", fetch = FetchType.LAZY)
+    private BiddingBudgetInfo budgetInfo;
+
+    @OneToOne(mappedBy = "biddingNotice", fetch = FetchType.LAZY)
+    private BiddingCategoryInfo categoryInfo;
+
+    @OneToOne(mappedBy = "biddingNotice", fetch = FetchType.LAZY)
+    private BiddingChangeHistory changeHistory;
+
+    @OneToOne(mappedBy = "biddingNotice", fetch = FetchType.LAZY)
+    private BiddingCondition condition;
+
+    @OneToOne(mappedBy = "biddingNotice", fetch = FetchType.LAZY)
+    private BiddingDocumentInfo documentInfo;
+
+    @OneToOne(mappedBy = "biddingNotice", fetch = FetchType.LAZY)
+    private BiddingPersonInCharge personInCharge;
+
+    @OneToOne(mappedBy = "biddingNotice", fetch = FetchType.LAZY)
+    private BiddingResult biddingResult;
+
+    @OneToOne(mappedBy = "biddingNotice", fetch = FetchType.LAZY)
+    private BiddingSchedule schedule;
+
 }
