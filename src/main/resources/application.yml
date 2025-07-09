@@ -6,10 +6,6 @@ server:
       tracking-modes: cookie
 
 spring:
-#  data:
-#    redis:
-#      host: 192.168.0.112
-#      port: 6379
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/work_hive

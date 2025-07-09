@@ -6,6 +6,7 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface BiddingResultMapper {
+
     BiddingResult toEntity(BiddingResultDto dto);
     BiddingResultDto toDto(BiddingResult entity);
 }

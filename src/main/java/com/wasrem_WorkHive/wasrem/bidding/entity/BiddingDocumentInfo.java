@@ -8,18 +8,21 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+import lombok.Setter;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Getter
+@Setter
 @Entity
 public class BiddingDocumentInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "bidding_notice_id", unique = true)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "bidding_notice_id")
     private BiddingNotice biddingNotice;
 
     @ElementCollection

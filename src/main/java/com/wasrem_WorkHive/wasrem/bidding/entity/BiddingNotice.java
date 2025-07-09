@@ -1,18 +1,21 @@
 package com.wasrem_WorkHive.wasrem.bidding.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Getter
+@Setter
 @Entity
+@EnableJpaAuditing
 public class BiddingNotice {
 
     @Id
@@ -38,37 +41,40 @@ public class BiddingNotice {
     private String prtcptLmtRgnCd;     // 참가 가능 지역 코드
     private String prtcptPsblRgnNm;    // 참가 가능 지역명
 
+    @CreatedDate
     private LocalDateTime createdAt;
+
+    @LastModifiedDate
     private LocalDateTime updatedAt;
 
-    @OneToOne(mappedBy = "biddingNotice", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "biddingNotice", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private BiddingAgencyInfo agencyInfo;
 
-    @OneToOne(mappedBy = "biddingNotice", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "biddingNotice", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private BiddingApplicationCondition applicationCondition;
 
-    @OneToOne(mappedBy = "biddingNotice", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "biddingNotice", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private BiddingBudgetInfo budgetInfo;
 
-    @OneToOne(mappedBy = "biddingNotice", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "biddingNotice", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private BiddingCategoryInfo categoryInfo;
 
-    @OneToOne(mappedBy = "biddingNotice", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "biddingNotice", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private BiddingChangeHistory changeHistory;
 
-    @OneToOne(mappedBy = "biddingNotice", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "biddingNotice", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private BiddingCondition condition;
 
-    @OneToOne(mappedBy = "biddingNotice", fetch = FetchType.LAZY)
-    private BiddingDocumentInfo documentInfo;
+    @OneToMany(mappedBy = "biddingNotice", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<BiddingDocumentInfo> documents;
 
-    @OneToOne(mappedBy = "biddingNotice", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "biddingNotice", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private BiddingPersonInCharge personInCharge;
 
-    @OneToOne(mappedBy = "biddingNotice", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "biddingNotice", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private BiddingResult biddingResult;
 
-    @OneToOne(mappedBy = "biddingNotice", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "biddingNotice", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private BiddingSchedule schedule;
 
 }

@@ -43,10 +43,10 @@ public class BiddingNoticeDto {
     private BiddingPersonInChargeDto personInCharge;
     private BiddingScheduleDto schedule;
     private List<BiddingDocumentInfoDto> documents;
-    private BiddingConditionDto conditions;
+    private BiddingConditionDto condition;
     private BiddingBudgetInfoDto budgetInfo;
     private BiddingCategoryInfoDto categoryInfo;
-    private BiddingApplicationConditionDto applicationConditions;
-    private List<BiddingChangeHistoryDto> changeHistories;
-    private BiddingResultDto result;
+    private BiddingApplicationConditionDto applicationCondition;
+    private BiddingChangeHistoryDto changeHistory;
+    private BiddingResultDto biddingResult;
 }

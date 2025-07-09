@@ -10,10 +10,13 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 
+import lombok.Setter;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Getter
+@Setter
 @Entity
 public class BiddingCondition {
     @Id

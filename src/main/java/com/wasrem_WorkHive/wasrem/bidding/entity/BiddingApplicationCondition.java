@@ -9,10 +9,13 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
+import lombok.Setter;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Getter
+@Setter
 @Entity
 public class BiddingApplicationCondition {
     @Id

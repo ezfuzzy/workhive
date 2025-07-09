@@ -10,9 +10,7 @@ import org.springframework.context.event.EventListener;
 //@EnableScheduling
 public class WasremApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(WasremApplication.class, args);
-	}
+	public static void main(String[] args) { SpringApplication.run(WasremApplication.class, args); }
 
 	@EventListener(ApplicationReadyEvent.class)
 	public void init() throws Exception {
