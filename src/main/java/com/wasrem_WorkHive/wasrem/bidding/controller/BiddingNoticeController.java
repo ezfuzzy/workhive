@@ -2,6 +2,7 @@ package com.wasrem_WorkHive.wasrem.bidding.controller;
 
 import com.wasrem_WorkHive.wasrem.bidding.dto.BiddingNoticeDto;
 import com.wasrem_WorkHive.wasrem.bidding.dto.BiddingResultDto;
+import com.wasrem_WorkHive.wasrem.bidding.scheduler.BiddingNoticeScheduler;
 import com.wasrem_WorkHive.wasrem.bidding.service.BiddingNoticeService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,27 @@ public class BiddingNoticeController {
 
     private final BiddingNoticeService biddingNoticeService;
 
+
+    /**
+     *   test codes
+     *
+     */
+
+    private final BiddingNoticeScheduler scheduler;
+
+
+    @PostMapping("/collect")
+    public ResponseEntity<String> manualCollect() {
+        try {
+            scheduler.manualDataCollection();
+            return ResponseEntity.ok("데이터 수집이 시작되었습니다.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("데이터 수집 중 오류가 발생했습니다: " + e.getMessage());
+        }
+    }
+
+
     @GetMapping("/test")
     public ResponseEntity<Map<String, String>> test(HttpServletRequest request) {
 
@@ -38,6 +60,10 @@ public class BiddingNoticeController {
 
         return ResponseEntity.ok(Map.of("msg", "good", "clientIp", clientIp, "userAgent", userAgent));
     }
+
+
+
+    // ==================================================================================
 
     /**
      * 새로운 입찰 공고를 생성합니다.

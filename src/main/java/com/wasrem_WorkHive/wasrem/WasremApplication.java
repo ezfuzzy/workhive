@@ -3,9 +3,10 @@ package com.wasrem_WorkHive.wasrem;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.event.EventListener;
 
-//@PropertySource(value = "classpath:custom.properties")
+@PropertySource(value = "classpath:custom.properties")
 @SpringBootApplication
 //@EnableScheduling
 public class WasremApplication {

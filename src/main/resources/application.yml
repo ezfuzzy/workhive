@@ -24,6 +24,9 @@ spring:
       password: admin
 logging:
   level:
+    com.yourpackage: DEBUG
     "[org.hibernate.SQL]": OFF
     "[org.hibernate.type.descriptor.sql.BasicBinder]": OFF
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
 

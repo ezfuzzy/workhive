@@ -5,12 +5,24 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 public interface BiddingNoticeRepository extends JpaRepository<BiddingNotice, Long> {
 
     // 중복 체크용
     boolean existsByBidNtceNoAndBidNtceOrd(String bidNtceNo, String bidNtceOrd);
+
+    // 입찰 공고 번호로 검색
+    Optional<BiddingNotice> findByNoticeNo(String noticeNo);
+
+    // 오늘 삽입된 입찰 공고 수
+    @Query("SELECT COUNT(b) FROM BiddingNotice b WHERE DATE(b.createdAt) = CURRENT_DATE")
+    long countTodayInserted();
+
+    // 특정 기간 입찰 공고 조회
+    List<BiddingNotice> findByNoticeDateBetween(LocalDateTime startDate, LocalDateTime endDate);
 
     // 상세 조회용 (상세 조회 시나리오에서 사용 - result 제외)
     @Query("""

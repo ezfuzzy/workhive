@@ -22,6 +22,7 @@ public class BiddingNotice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; //                Int     [pk, increment]
 
+    @Column(unique = true, nullable = false)
     private String bidNtceNo;   // 입찰공고번호
     private String bidNtceOrd;  // 입찰공고차수
     private String bidNtceNm;   // 입찰공고명
