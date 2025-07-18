@@ -15,14 +15,24 @@ public interface BiddingNoticeRepository extends JpaRepository<BiddingNotice, Lo
     boolean existsByBidNtceNoAndBidNtceOrd(String bidNtceNo, String bidNtceOrd);
 
     // 입찰 공고 번호로 검색
-    Optional<BiddingNotice> findByNoticeNo(String noticeNo);
+    Optional<BiddingNotice> findByBidNtceNo(String bidNtceNo);
 
     // 오늘 삽입된 입찰 공고 수
-    @Query("SELECT COUNT(b) FROM BiddingNotice b WHERE DATE(b.createdAt) = CURRENT_DATE")
-    long countTodayInserted();
+    @Query("""
+        SELECT COUNT(b)
+        FROM BiddingNotice b
+        WHERE b.createdAt BETWEEN :start AND :end
+    """)
+    long countTodayInserted(@Param("start") LocalDateTime start, @Param("end") LocalDateTime end);
 
-    // 특정 기간 입찰 공고 조회
-    List<BiddingNotice> findByNoticeDateBetween(LocalDateTime startDate, LocalDateTime endDate);
+    // 특정 기간 입찰 공고 조회 - 마감(개찰)일 기준
+    @Query("""
+        SELECT b FROM BiddingNotice b
+        JOIN b.schedule s
+        WHERE s.bidClseDt BETWEEN :start AND :end
+    """)
+    List<BiddingNotice> findNoticesByNoticeDateBetween(@Param("start") LocalDateTime start,
+                                                       @Param("end") LocalDateTime end);
 
     // 상세 조회용 (상세 조회 시나리오에서 사용 - result 제외)
     @Query("""

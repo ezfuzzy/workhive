@@ -38,7 +38,7 @@ public class BiddingNoticeController {
     @PostMapping("/collect")
     public ResponseEntity<String> manualCollect() {
         try {
-            scheduler.manualDataCollection();
+//            scheduler.manualDataCollection();
             return ResponseEntity.ok("데이터 수집이 시작되었습니다.");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
